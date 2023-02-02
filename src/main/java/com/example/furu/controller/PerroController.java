@@ -2,6 +2,7 @@ package com.example.furu.controller;
 
 import com.example.furu.model.Perro;
 import com.example.furu.services.PerroServicioImp;
+import io.swagger.annotations.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+
 public class PerroController {
 
     @Autowired
