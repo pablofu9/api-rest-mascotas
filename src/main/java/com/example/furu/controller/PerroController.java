@@ -39,14 +39,16 @@ public class PerroController {
     }
 
     //Para hacer un update de un perro
-    @PutMapping("/perros/{id}")
-    public ResponseEntity<Perro> update(@PathVariable int id,@RequestBody Perro perro){
+    @PutMapping("/perros/perrosdieta/{id}")
+    public ResponseEntity<Perro> update(@PathVariable int id,@RequestParam ("peso") int peso){
         Perro perroid = perroServicioImp.getById(id);
-        perroid.setNombre_perro(perro.getNombre_perro());
-        perroid.setRaza_perro(perro.getRaza_perro());
-        perroid.setPeso(perro.getPeso());
-        perroid.setColor(perro.getColor());
+        perroid.setPeso(peso);
         Perro perroNuevo = perroServicioImp.save(perroid);
+        return new ResponseEntity<>(perroNuevo, HttpStatus.CREATED);
+    }
+    @PutMapping("/perros/update")
+    public ResponseEntity<Perro> update(@RequestBody Perro perro){
+        Perro perroNuevo = perroServicioImp.save(perro);
         return new ResponseEntity<>(perroNuevo, HttpStatus.CREATED);
     }
 
@@ -59,4 +61,13 @@ public class PerroController {
         estadoPerroEliminado.put("Eliminado", true);
         return ResponseEntity.ok(estadoPerroEliminado);
     }
+    @DeleteMapping("/perros/borrar/{nombre}")
+    public ResponseEntity<HashMap<String, Boolean>> eliminarPerroNombre(@PathVariable String nombre){
+        this.perroServicioImp.deleteByName(nombre);
+
+        HashMap<String, Boolean> estadoPerroEliminado = new HashMap<>();
+        estadoPerroEliminado.put("Eliminado", true);
+        return ResponseEntity.ok(estadoPerroEliminado);
+    }
+
 }

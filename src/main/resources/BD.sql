@@ -11,3 +11,4 @@ CREATE TABLE perro(
 
 INSERT INTO perro(nombre_perro,raza_perro,peso,color) VALUES ('Gala','Pastor aleman',30,'Negro'),('Trufa','Perro de aguas',12,'Marron'),
                                                              ('Zeus','Doberman',32,'Negro'),('Luna','Cocker',8,'Marron');
+

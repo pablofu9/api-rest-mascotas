@@ -33,4 +33,13 @@ public class PerroServicioImp implements PerroServicio{
     public void delete(int id) {
         repositorio.deleteById(id);
     }
+
+    @Override
+    public Perro getPerroByName(String nombre){
+        return repositorio.getPerroByName(nombre);
+
+    }
+    public void deleteByName(String nombre){
+        repositorio.delete(getPerroByName(nombre));
+    }
 }
